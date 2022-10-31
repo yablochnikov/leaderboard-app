@@ -1,0 +1,22 @@
+.banner {
+  &__item {
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+    margin-right: 10px;
+    text-align: center;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    span {
+      margin-top: 5px;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+}
+
+
