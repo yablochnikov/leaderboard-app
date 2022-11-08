@@ -1,7 +1,15 @@
-import { AppDispatch } from '.';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// export const fetchUsers = (dispatch: AppDispatch) => {
-//   try {
+import instance from './axiosSettings';
 
-//   } catch (e) {}
-// };
+export const fetchUsers = createAsyncThunk(
+  'user/fetchAll',
+  async (_, thunkAPI) => {
+    try {
+      const response = await instance.get('/starting-state');
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Failed to receive users');
+    }
+  },
+);

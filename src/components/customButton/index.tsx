@@ -5,15 +5,27 @@ import Button from '@mui/material/Button';
 import './customButton.scss';
 
 type CustomButtonProps = {
+  center?: boolean;
+  width?: number;
   variant?: string;
   bgcolor?: string;
   text?: string | JSX.Element;
+  func?: () => void;
+  color?: string;
 };
 
-const CustomButton: FC<CustomButtonProps> = ({ bgcolor, text }) => {
+const CustomButton: FC<CustomButtonProps> = ({
+  width,
+  bgcolor,
+  func,
+  color,
+  text,
+  center,
+}) => {
   const MyButton = styled(Button)({
     backgroundColor: bgcolor,
-    color: '#fff',
+    color: color,
+    width: width,
     height: 24,
     fontWeight: '600',
     fontSize: 10,
@@ -27,9 +39,10 @@ const CustomButton: FC<CustomButtonProps> = ({ bgcolor, text }) => {
     '&:disabled': {
       backgroundColor: '#f3f3f3',
     },
+    margin: center ? '0 auto' : 0,
   });
 
-  return <MyButton>{text}</MyButton>;
+  return <MyButton onClick={func}>{text}</MyButton>;
 };
 
 export default CustomButton;

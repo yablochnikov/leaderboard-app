@@ -1,0 +1,11 @@
+.modal {
+  text-align: center;
+  &__heading {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #030327;
+  }
+}
