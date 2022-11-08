@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { OutlinedInput } from '@mui/material';
+import { OutlinedInput, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
@@ -29,7 +29,6 @@ const AddModal: FC = () => {
     flexDirection: 'column',
     p: 4,
     background: `url(${modalBg})center center no-repeat, #f3f3f3`,
-
     display: 'flex',
   };
 
@@ -64,7 +63,20 @@ const AddModal: FC = () => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <h2 className="modal__heading">Add new user</h2>
+        <Typography
+          component="h2"
+          className="modal__heading"
+          sx={{
+            marginTop: '50px',
+            marginBottom: '10px',
+            fontWeight: '600',
+            fontSize: '22px',
+            lineHeight: '27px',
+            color: '#030327',
+          }}
+        >
+          Add new user
+        </Typography>
         <OutlinedInput
           sx={inputStyles}
           placeholder="Name"

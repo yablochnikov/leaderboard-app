@@ -2,8 +2,6 @@ import { FC } from 'react';
 import { styled } from '@mui/material';
 import Button from '@mui/material/Button';
 
-import './customButton.scss';
-
 type CustomButtonProps = {
   center?: boolean;
   width?: number;

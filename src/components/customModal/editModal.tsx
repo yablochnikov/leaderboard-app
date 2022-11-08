@@ -10,9 +10,7 @@ import CustomButton from '../customButton';
 
 const EditModal: FC = () => {
   const dispatch = useAppDispatch();
-  const { isEditModal, selectedUser } = useAppSelector(
-    (state) => state.userReducer,
-  );
+  const { isEditModal } = useAppSelector((state) => state.userReducer);
   const { closeModal, changeUser } = userSlice.actions;
   const [userScore, setUserScore] = useState<string>('');
 
@@ -76,7 +74,7 @@ const EditModal: FC = () => {
             color: '#030327',
           }}
         >
-          Edit user score number {selectedUser}
+          Edit user score number
         </Typography>
         <OutlinedInput
           sx={inputStyles}
