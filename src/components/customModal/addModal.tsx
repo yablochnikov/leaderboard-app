@@ -8,8 +8,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { userSlice } from '../../store/slices/userSlice';
 import CustomButton from '../customButton';
 
-import './customModal.scss';
-
 const AddModal: FC = () => {
   const dispatch = useAppDispatch();
   const { isAddModal } = useAppSelector((state) => state.userReducer);
@@ -19,7 +17,7 @@ const AddModal: FC = () => {
 
   const style = {
     textAlign: 'center',
-    position: 'absolute' as const,
+    position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',

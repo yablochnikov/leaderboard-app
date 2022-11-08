@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../../types/User';
 import { fetchUsers } from '../actionCreators';
 
-import { findHighest } from './../../utils/array';
+import { findHighest, sortArr } from './../../utils/array';
 
 type UserState = {
   isLoading: boolean;
@@ -47,34 +47,41 @@ export const userSlice = createSlice({
       state.topStats = action.payload;
     },
     setUsersView(state, action: PayloadAction<User[]>) {
-      const res = findHighest([action.payload]);
+      const res = sortArr(action.payload);
       state.usersView = res;
       state.isLoading = false;
     },
     addNewUser(state, action: PayloadAction<User>) {
+      state.usersView.push(action.payload);
       state.totalStats[state.page].push(action.payload);
       state.totalStats.forEach((el, i) => {
         i !== state.page
           ? el.push({ name: action.payload.name, score: 0 })
           : null;
       });
-      state.usersView.push(action.payload);
+      localStorage.setItem('Users', JSON.stringify(sortArr(state.usersView)));
+      state.totalStats[state.page] = findHighest([
+        state.totalStats[state.page],
+      ]);
       localStorage.setItem('TotalStats', JSON.stringify(state.totalStats));
+      state.isAddModal = false;
     },
     setPage(state, action: PayloadAction<number>) {
       state.page = action.payload;
     },
-    // setPlaces(state, action: PayloadAction<number>) {
-    //   state.usersView.forEach((el) => (el.places = action.payload));
-    // },
     selectUser(state, action: PayloadAction<number>) {
       state.selectedUser = action.payload;
     },
     changeUser(state, action: PayloadAction<number>) {
       state.usersView[state.selectedUser].score = action.payload;
-      state.totalStats[state.page] = state.usersView;
+      console.log(state.selectedUser);
+      state.totalStats[state.page] = sortArr(state.usersView);
       localStorage.setItem('TotalStats', JSON.stringify(state.totalStats));
-      localStorage.setItem('Users', JSON.stringify(state.usersView));
+      localStorage.setItem(
+        'Users',
+        JSON.stringify(findHighest([state.usersView])),
+      );
+      state.isEditModal = false;
     },
   },
   extraReducers: {

@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import { Box, Button, Typography } from '@mui/material';
 
 import { useAppDispatch } from '../../hooks';
 import { fetchUsers } from '../../store/actionCreators';
@@ -15,6 +16,29 @@ const BoardHeader: FC = () => {
   const [counter, setCounter] = useState(
     JSON.parse(localStorage.getItem('TotalStats') as string)?.length - 1,
   );
+
+  const controlStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    div: {
+      display: 'flex',
+      marginRight: '8px',
+      cursor: 'pointer',
+    },
+    button: {
+      marginRight: '8px',
+      '&:last-child': {
+        marginRight: '0',
+      },
+    },
+    '&-next, &-prev': {
+      '&:hover': {
+        'svg, path': {
+          fill: '#000',
+        },
+      },
+    },
+  };
 
   const handleFetch = () => {
     dispatch(fetchUsers()).then((response) =>
@@ -56,11 +80,28 @@ const BoardHeader: FC = () => {
   };
 
   return (
-    <div className="board__header">
-      <h2 className="header__heading">Leaders table for this period</h2>
-      <div className="header__controls">
-        <div className="header__navigate">
-          <button
+    <Box
+      className="board__header"
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
+    >
+      <Typography
+        component="h2"
+        className="header__heading"
+        sx={{
+          fontWeight: '500',
+          fontSize: '18px',
+          lineHeight: '22px',
+        }}
+      >
+        Leaders table for this period
+      </Typography>
+      <Box className="header__controls" sx={controlStyles}>
+        <Box className="header__navigate">
+          <Button
             className="header__controls-prev"
             onClick={() => handlePrevDay()}
             disabled={counter != 0 ? false : true}
@@ -85,8 +126,8 @@ const BoardHeader: FC = () => {
                 fill="black"
               />
             </svg>
-          </button>
-          <button
+          </Button>
+          <Button
             className="header__controls-next"
             onClick={() => handleNextDay()}
             disabled={
@@ -117,9 +158,9 @@ const BoardHeader: FC = () => {
                 fill="black"
               />
             </svg>
-          </button>
-        </div>
-        <div className="header__buttons">
+          </Button>
+        </Box>
+        <Box className="header__buttons">
           <CustomButton
             color="#fff"
             bgcolor="#F99746"
@@ -133,9 +174,9 @@ const BoardHeader: FC = () => {
             func={handleOpen}
           />
           <AddModal />
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

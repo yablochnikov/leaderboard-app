@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { OutlinedInput } from '@mui/material';
+import { OutlinedInput, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
@@ -7,8 +7,6 @@ import modalBg from '../../assets/images/modalBg.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { userSlice } from '../../store/slices/userSlice';
 import CustomButton from '../customButton';
-
-import './customModal.scss';
 
 const EditModal: FC = () => {
   const dispatch = useAppDispatch();
@@ -66,9 +64,20 @@ const EditModal: FC = () => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <h2 className="modal__heading">
+        <Typography
+          component="h2"
+          className="modal__heading"
+          sx={{
+            marginTop: '50px',
+            marginBottom: '10px',
+            fontWeight: '600',
+            fontSize: '22px',
+            lineHeight: '27px',
+            color: '#030327',
+          }}
+        >
           Edit user score number {selectedUser}
-        </h2>
+        </Typography>
         <OutlinedInput
           sx={inputStyles}
           placeholder="Edit points"

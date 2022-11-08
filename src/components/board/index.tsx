@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Box } from '@mui/material';
 
 import { useAppSelector } from '../../hooks';
-import { findDifference, sortArr } from '../../utils/array';
+import { findDifference, findHighest, sortArr } from '../../utils/array';
 import BoardHeader from '../boardHeader';
 import BoardListItem from '../boardListItem';
 import EditModal from '../customModal/editModal';
@@ -34,7 +34,7 @@ const Board: FC = () => {
           padding: '20px',
         }}
       >
-        {sortArr(usersView).map((user, i) => {
+        {findHighest([usersView]).map((user, i) => {
           return (
             <BoardListItem
               key={i}

@@ -26,9 +26,8 @@ const BoardListItem: FC<BoardListItemProps> = ({
   const dispatch = useAppDispatch();
   const { openEditModal, selectUser } = userSlice.actions;
 
-  const handleOpen = (i: number) => {
+  const handleOpen = () => {
     dispatch(openEditModal());
-    dispatch(selectUser(i));
   };
 
   let place = '';
@@ -137,7 +136,6 @@ const BoardListItem: FC<BoardListItemProps> = ({
         </Box>
         <Box className="board__stats" style={{ color: color }} sx={statsStyles}>
           <Box component="span">{places} places</Box>
-
           <CustomButton
             variant="text"
             text={
@@ -150,7 +148,11 @@ const BoardListItem: FC<BoardListItemProps> = ({
                 }}
               />
             }
-            func={() => handleOpen(position)}
+            func={() => {
+              console.log(position);
+              dispatch(selectUser(position));
+              handleOpen();
+            }}
           />
         </Box>
       </Box>
