@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { Box } from '@mui/material';
 
 import edit from '../../assets/icons/edit.svg';
-import person from '../../assets/icons/person.svg';
 import { useAppDispatch } from '../../hooks';
 import { userSlice } from '../../store/slices/userSlice';
 import { toCapitalize } from '../../utils/string';
@@ -112,7 +111,7 @@ const BoardListItem: FC<BoardListItemProps> = ({
           <Box
             component="img"
             className="board__avatar"
-            src={person}
+            src={`https://robohash.org/set_set4/${name}`}
             alt="avatar"
             sx={{
               margin: '0 30px',
@@ -149,7 +148,6 @@ const BoardListItem: FC<BoardListItemProps> = ({
               />
             }
             func={() => {
-              console.log(position);
               dispatch(selectUser(position));
               handleOpen();
             }}

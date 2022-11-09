@@ -1,14 +1,13 @@
 import { FC } from 'react';
 import { Box } from '@mui/material';
 
-import person from '../../assets/icons/person.svg';
-
 interface Props {
   name: string;
   score: number;
+  src: string;
 }
 
-const BannerListItem: FC<Props> = ({ name, score }) => {
+const BannerListItem: FC<Props> = ({ name, score, src }) => {
   const itemStyles = {
     display: 'flex',
     width: '60px',
@@ -29,7 +28,7 @@ const BannerListItem: FC<Props> = ({ name, score }) => {
 
   return (
     <Box className="banner__item" sx={itemStyles}>
-      <img src={person} alt="person" />
+      <img src={src} alt="person" />
       <Box component="span" sx={spanStyles}>
         {name} - {score}
       </Box>

@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import bannerImg from '../../assets/images/banner.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { userSlice } from '../../store/slices/userSlice';
-import { findHighest, sortArr } from '../../utils/array';
+import { findHighest } from '../../utils/array';
 import BannerListItem from '../bannerListItem';
 
 import './banner.scss';
@@ -67,13 +67,14 @@ const Banner = () => {
             display: 'flex',
           }}
         >
-          {sortArr(res)
+          {findHighest([res])
             .slice(0, 4)
             .map((user, i) => {
               return (
                 <BannerListItem
                   name={user.name as string}
                   score={user.score as number}
+                  src={`https://robohash.org/set_set4/${user.name}`}
                   key={i}
                 />
               );

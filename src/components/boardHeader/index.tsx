@@ -167,7 +167,17 @@ const BoardHeader: FC = () => {
             </svg>
           </Button>
         </Box>
-        <Box className="header__buttons">
+        <Box
+          className="header__buttons"
+          sx={{
+            button: {
+              marginRight: '25px',
+              '&:last-child': {
+                marginRight: 0,
+              },
+            },
+          }}
+        >
           <CustomButton
             color="#fff"
             bgcolor="#F99746"

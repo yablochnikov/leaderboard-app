@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Box } from '@mui/material';
 
 import { useAppSelector } from '../../hooks';
-import { findDifference, findHighest, sortArr } from '../../utils/array';
+import { findDifference, findHighest } from '../../utils/array';
 import BoardHeader from '../boardHeader';
 import BoardListItem from '../boardListItem';
 import EditModal from '../customModal/editModal';

@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../../types/User';
 import { fetchUsers } from '../actionCreators';
 
-import { findHighest, sortArr } from './../../utils/array';
+import { findHighest } from './../../utils/array';
 
 type UserState = {
   isLoading: boolean;
@@ -47,8 +47,7 @@ export const userSlice = createSlice({
       state.topStats = action.payload;
     },
     setUsersView(state, action: PayloadAction<User[]>) {
-      const res = sortArr(action.payload);
-      state.usersView = res;
+      state.usersView = findHighest([action.payload]);
       state.isLoading = false;
     },
     addNewUser(state, action: PayloadAction<User>) {
@@ -59,7 +58,10 @@ export const userSlice = createSlice({
           ? el.push({ name: action.payload.name, score: 0 })
           : null;
       });
-      localStorage.setItem('Users', JSON.stringify(sortArr(state.usersView)));
+      localStorage.setItem(
+        'Users',
+        JSON.stringify(findHighest([state.usersView])),
+      );
       state.totalStats[state.page] = findHighest([
         state.totalStats[state.page],
       ]);
@@ -70,12 +72,13 @@ export const userSlice = createSlice({
       state.page = action.payload;
     },
     selectUser(state, action: PayloadAction<number>) {
+      // console.log(action.payload);
       state.selectedUser = action.payload;
     },
     changeUser(state, action: PayloadAction<number>) {
       state.usersView[state.selectedUser].score = action.payload;
-      console.log(state.selectedUser);
-      state.totalStats[state.page] = sortArr(state.usersView);
+      state.usersView = findHighest([state.usersView]);
+      state.totalStats[state.page] = state.usersView;
       localStorage.setItem('TotalStats', JSON.stringify(state.totalStats));
       localStorage.setItem(
         'Users',
