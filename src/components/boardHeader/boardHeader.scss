@@ -1,0 +1,36 @@
+@media (max-width: 425px) {
+  .board {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+
+      .header {
+        &__heading {
+          font-size: 14px;
+        }
+
+        &__controls {
+          margin-top: 20px;
+          flex-direction: column;
+        }
+
+        &__navigate {
+          color: red;
+          display: flex;
+          justify-content: space-between;
+          width: 50%;
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        &__buttons {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}

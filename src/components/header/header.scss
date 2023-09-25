@@ -1,0 +1,15 @@
+@media (max-width: 767px) {
+  .header {
+    &__heading {
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .header {
+    &__heading {
+      text-align: center;
+    }
+  }
+}

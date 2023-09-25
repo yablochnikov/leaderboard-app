@@ -1,0 +1,41 @@
+.banner {
+  &__image {
+    position: absolute;
+    top: -50px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    &__content {
+      width: 100%;
+      text-align: center;
+    }
+
+    &__list {
+      justify-content: center;
+    }
+
+    &__image {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .banner {
+    &__content {
+      width: 100%;
+      text-align: center;
+    }
+
+    &__list {
+      justify-content: center;
+    }
+
+    &__image {
+      display: none;
+    }
+  }
+}

@@ -1,9 +1,10 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from '@mui/material';
 
 import App from './app/App';
 import { setupStore } from './store';
+import { theme } from './theme';
 
 import './index.scss';
 
@@ -14,9 +15,9 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
       <App />
-    </Provider>
-  </React.StrictMode>,
+    </ThemeProvider>
+  </Provider>,
 );
